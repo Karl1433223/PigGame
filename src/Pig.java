@@ -8,6 +8,8 @@ class Pig {
     /**
      * The score needed to win a round.
      */
+    private static int score = 0;
+    private static int opponentScore =0;
     public static final int WINNING_SCORE = 100;
     public static void main(String[] args) {
 // intro, initialize players
@@ -41,7 +43,28 @@ class Pig {
         // 3. When a player wins, print the winner, and break out of the loop.
         // 4. Return a boolean value
 
-        return false;
+
+        int turnNum =0;
+
+
+        while (score <100 && opponentScore<100){
+            int result =playTurn(player1,turnNum,score,opponentScore);
+            int result1=playTurn(player2,turnNum,score,opponentScore);
+            score+=result;
+            opponentScore+=result1;
+
+            turnNum++;
+
+            System.out.println("This is you current score" +score);
+            System.out.println("This is you current score" +opponentScore);
+
+            }
+
+
+
+
+
+    return false;
     }
 /**
  * Play a single turn, returning how many points the player got.
@@ -60,8 +83,27 @@ class Pig {
             // b. On any other roll, add it to the pool.
         // 4. If the loop ends, return the pool's value.
         // 5. Be sure to print events frequently, so the human player can see what's happening!
+        player.beginTurn(score,opponentsScore);
+        int rollNum = 0;
+        int pollSize = 0;
 
-        return 0;
+        while(player.decideIfShouldRoll(turnNum,rollNum,pollSize,score,opponentsScore)){
+
+             int random = (int) (Math.random() * (6 )+1);
+            System.out.println(random);
+             if(random ==1){
+                 System.out.println("You got 1");
+                 return 0;
+
+             }
+
+             else{ pollSize+=random;
+             }
+             rollNum+=1;
+
+        }
+
+        return pollSize;
     }
     /**
      * Deliver a final report, indicating the overall winner after all
@@ -77,7 +119,12 @@ class Pig {
         // This function must do the following:
         // 1. Print out both player's scores.
         // 2. Indicate who the winner was (or if there was a tie).
-
-
+        System.out.println(score);
+        System.out.println(opponentScore);
+        if (score>opponentScore){
+            System.out.println("Human is the winner");}
+        if (score<opponentScore){
+            System.out.println("Opponent is the winner");
+        }
     }
 }

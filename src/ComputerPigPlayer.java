@@ -40,7 +40,7 @@ public class ComputerPigPlayer extends PigPlayer {
             poolSize, int myScore, int opponentsScore) {
         // Current strategy is to only roll once. Come up with a better strategy for the computer
         // player and implement it here.
-        if (rollNumber == 1) return true;
+        if (rollNumber <1) return true;
         else return false;
     }
 }
